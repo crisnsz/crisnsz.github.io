@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+// Source: CV (Oct 2026). Keep in sync with it.
+const jobs = [
+  {
+    company: 'Grupo Farsiman',
+    role: 'Full Stack Developer',
+    dates: 'Oct 2023 – Present',
+    summary: 'Commercial platforms of a retail chain: e-commerce, ERP, kiosks and point of sale, in a .NET microservices architecture.',
+  },
+  {
+    company: 'Freelance',
+    role: 'Developer / Contractor',
+    dates: 'Jan 2021 – Oct 2023',
+    summary: 'Custom ERP systems and electronic invoicing, end to end.',
+  },
+  {
+    company: 'Bidss Technology',
+    role: 'Front-End Developer',
+    dates: 'Oct 2019 – Dec 2020',
+    summary: 'Mobile and desktop apps for a utility company, plus internal business systems.',
+  },
+  {
+    company: 'ACCO Project',
+    role: 'Software Developer',
+    dates: 'Apr 2019 – Aug 2019',
+    summary: 'Project and budget management application.',
+  },
+  {
+    company: 'Asociación Hondureña de Maquiladores',
+    role: 'Software Engineering Training Program',
+    dates: 'Apr 2018 – Apr 2019',
+    summary: 'Inventory, sales and invoicing ERP modules.',
+  },
+];
+
+const skills = [
+  ['Back end', 'C#, .NET, ASP.NET Core, Entity Framework Core, SignalR, REST APIs'],
+  ['Front end', 'Angular, TypeScript, RxJS'],
+  ['Data and messaging', 'SQL Server, SQL Server Service Broker, Redis, MongoDB, RabbitMQ, MassTransit'],
+  ['DevOps', 'Azure DevOps, Docker, Kubernetes, ArgoCD, Terraform, Ansible, Linux'],
+  ['Observability', 'Serilog, Seq, Application Insights'],
+  ['Architecture and patterns', 'Microservices, saga pattern with compensating actions, idempotent messaging, hexagonal / onion architecture, screaming architecture, MVC, MVVM'],
+];
+---
+
+<Base title="Cristian Sánchez | Full Stack Developer">
+  <div class="container">
+    <section class="hero" aria-labelledby="top">
+      <p class="eyebrow">San Pedro Sula, Honduras (UTC-6)</p>
+      <h1 id="top">Cristian Sánchez</h1>
+      <p class="lead">Full stack developer, 6+ years building business systems in .NET and Angular.</p>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p>
+        I build business systems: ERP, invoicing, online payments, inventory and approval workflows. Today I work on
+        the commercial platforms of a retail chain with 200+ branches, from development through deployment and
+        production monitoring, including critical incidents.
+      </p>
+      <p>
+        Outside work I run a homelab as infrastructure practice: Proxmox, Kubernetes with GitOps, Terraform and
+        Ansible, with decision records and incident write-ups for what went wrong.
+      </p>
+      <dl class="skills">
+        {
+          skills.map(([area, list]) => (
+            <div>
+              <dt>{area}</dt>
+              <dd>{list}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p>Selected work. Each project has a short write-up of the problem and the approach.</p>
+      <ul class="cards">
+        {
+          projects.map((p) => (
+            <li class="card">
+              <h3>
+                <a href={`/projects/${p.id}/`}>{p.data.title}</a>
+                {p.data.featured && <span class="badge">Featured</span>}
+              </h3>
+              <p>{p.data.summary}</p>
+              <ul class="tags" aria-label="Stack">
+                {p.data.stack.map((s) => <li>{s}</li>)}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <p>Full details are in my CV, available on request.</p>
+      <ol class="jobs">
+        {
+          jobs.map((job) => (
+            <li class="job">
+              <h3>
+                {job.role} · {job.company}
+              </h3>
+              <p class="eyebrow">{job.dates}</p>
+              <p>{job.summary}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:cristian.sanchez.9824@gmail.com">cristian.sanchez.9824@gmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/crisnsz">linkedin.com/in/crisnsz</a></li>
+        <li>GitHub: <a href="https://github.com/crisnsz">github.com/crisnsz</a></li>
+      </ul>
+    </section>
+  </div>
+</Base>
