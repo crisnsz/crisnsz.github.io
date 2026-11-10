@@ -13,7 +13,7 @@ stack:
   - Tailwind CSS
   - Docker
 repo: https://github.com/crisnsz/stock-management
-order: 3
+order: 4
 featured: false
 ---
 

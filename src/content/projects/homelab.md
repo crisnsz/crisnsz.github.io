@@ -12,7 +12,7 @@ stack:
   - Cloudflare
   - Tailscale
 repo: https://github.com/crisnsz/homelab
-order: 1
+order: 2
 featured: true
 ---
 
@@ -28,10 +28,10 @@ A homelab built around a single Proxmox node and managed as code. Ansible provis
 
 ## Decisions and incidents
 
-The repository keeps architecture decision records and blameless incident write-ups next to the code:
+The repository keeps architecture decision records and blameless postmortems next to the code:
 
 - [ADR-0002: Abandon Cilium as the CNI](https://github.com/crisnsz/homelab/blob/main/docs/adr/ADR-0002-abandon-cilium.md), a decision that followed a full cluster outage.
-- [LAN outage after power cuts](https://github.com/crisnsz/homelab/blob/main/docs/forward-chain-incident.md), where the root cause had to be reopened after an audit.
+- [LAN outage after power cuts](https://github.com/crisnsz/homelab/blob/main/docs/postmortems/lan-outage-forward-chain.md), where the root cause had to be reopened after an audit.
 - [TLS certificates](https://github.com/crisnsz/homelab/blob/main/docs/certificates.md), on when to use a public CA and when an internal one.
 
 ## Note

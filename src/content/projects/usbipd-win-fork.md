@@ -9,7 +9,7 @@ stack:
   - Windows services
   - Named pipes
 repo: https://github.com/crisnsz/usbipd-win
-order: 2
+order: 3
 featured: true
 status: Fork of dorssel/usbipd-win
 ---
